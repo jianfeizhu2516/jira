@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    border-bottom: 1px solid #e2e8f0;
+    font-family: 'Poppins', sans-serif;
+    .header-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin: 0;
+    }
+  
+    .header-email {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #4a5568;
+      margin: 0;
+    }
+  }
