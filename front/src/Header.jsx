@@ -1,11 +1,11 @@
 import React from 'react';
-import './Header.scss'; // 引入样式文件
+import './Header.scss';
 
-const Header = () => {
+const Header = ({ username }) => {
   return (
     <div className="header">
       <h1 className="header-title">Task Master</h1>
-      <div className="header-email">johnDoe@gmail.com</div>
+      <div className="header-email">{username || 'Guest'}</div>
     </div>
   );
 };
