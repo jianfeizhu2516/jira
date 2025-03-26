@@ -17,6 +17,7 @@ const TaskList = () => {
   const [statusFilter, setStatusFilter] = useState('All');
   const [assigneeFilter, setAssigneeFilter] = useState('All');
   const [username, setUsername] = useState('');
+  const [searchKeyword, setSearchKeyword] = useState('');
 
   useEffect(() => {
     fetch('/api/tasks')
@@ -87,8 +88,12 @@ const TaskList = () => {
   };
 
   const filteredTasks = tasks.filter(task => {
-    return (statusFilter === 'All' || task.status === statusFilter) &&
-           (assigneeFilter === 'All' || task.assignee === assigneeFilter);
+    return (
+      (statusFilter === 'All' || task.status === statusFilter) &&
+      (assigneeFilter === 'All' || task.assignee === assigneeFilter) &&
+      (task.task.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+       task.description.toLowerCase().includes(searchKeyword.toLowerCase()))
+    );
   });
 
   return (
@@ -111,6 +116,14 @@ const TaskList = () => {
                 <option value="Jane Smith">Jane Smith</option>
               </select>
             </div>
+            <div className="search-row"></div>
+            <input
+              type="text"
+              placeholder="Search tasks..."
+              value={searchKeyword}
+              onChange={(e) => setSearchKeyword(e.target.value)}
+              className="search-input"
+            />
             <button className="add-task-button" onClick={() => setShowForm(true)}>Add Task</button>
           </div>
 
